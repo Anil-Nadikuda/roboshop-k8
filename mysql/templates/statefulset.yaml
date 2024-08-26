@@ -3,28 +3,28 @@ kind: StatefulSet
 metadata:
   name: mysql
   namespace: roboshop
-  labels: # these labels are deployment labels
+  labels:
     app: mysql
     project: roboshop
     tier: db
 spec:
-  replicas: {{ .Values.statefulset.replicas }}
   selector:
-    matchLabels: # these labels are used to find the pods
+    matchLabels:
       app: mysql
       project: roboshop
       tier: db
   serviceName: "mysql"
+  replicas: {{ .Values.statefulset.replicas }}
   template:
     metadata:
-      labels: # these labels are pod labels
+      labels:
         app: mysql
         project: roboshop
         tier: db
     spec:
       containers:
       - name: mysql
-        image: "anilnadikuda/mysql:{{ .Values.statefulset.imageVersion }}"
+        image: "joindevops/mysql:{{ .Values.statefulset.imageVersion }}"
         args:
         - "--ignore-db-dir=lost+found"
         envFrom:

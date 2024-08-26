@@ -8,12 +8,12 @@ metadata:
     project: roboshop
     tier: db
 spec:
+  ports:
+  - protocol: TCP
+    port: 3306 #service-port
+    targetPort: 3306
+  clusterIP: None
   selector:
     app: mysql
     project: roboshop
     tier: db
-  clusterIP: None
-  ports:
-  - protocol: TCP
-    port: 3306 #service-port
-    targetPort: 3306 #container-port
