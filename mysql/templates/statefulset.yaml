@@ -8,7 +8,7 @@ metadata:
     project: roboshop
     tier: db
 spec:
-  replicas: {{ .Values.statefulset.replica }}
+  replicas: {{ .Values.statefulset.replicas }}
   selector:
     matchLabels: # these labels are used to find the pods
       app: mysql
