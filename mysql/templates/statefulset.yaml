@@ -25,7 +25,8 @@ spec:
       containers:
       - name: mysql
         image: "anilnadikuda/mysql:{{ .Values.statefulset.imageVersion }}"
-        imagePullPolicy: Always
+        args:
+        - "--ignore-db-dir=lost+found"
         envFrom:
         - configMapRef:
             name: mysql
