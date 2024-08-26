@@ -25,7 +25,6 @@ spec:
       containers:
       - name: mongodb
         image: "anilnadikuda/mongodb:{{ .Values.statefulset.imageVersion }}"
-        imagePullPolocy: Always
         volumeMounts:
         - name: mongodb
           mountPath: /data/db
