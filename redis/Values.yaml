@@ -1,2 +1,3 @@
-statefulset:
+statefullSet:
   replicas: 2
+
