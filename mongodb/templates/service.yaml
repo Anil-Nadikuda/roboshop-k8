@@ -10,7 +10,7 @@ metadata:
 spec:
   ports:
   - protocol: TCP
-    port: 27017 #service-port
+    port: 27017
     targetPort: 27017
   clusterIP: None
   selector:
