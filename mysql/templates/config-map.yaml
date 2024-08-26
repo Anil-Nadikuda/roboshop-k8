@@ -3,6 +3,5 @@ Kind: ConfigMap
 metadata:
   name: mysql
   namespace: roboshop
-spec:
- data:
+data:
   MYSQL_DATABASE: "cities"
