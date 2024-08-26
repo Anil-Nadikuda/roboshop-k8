@@ -30,10 +30,10 @@ spec:
         envFrom:
         - secretRef:
             name: rabbitmq
-        volumeMount:
+        volumeMounts:
         - name: rabbitmq
           mountPath: /var/lib/rabbitmq
-  volumeClaimTemplate:
+  volumeClaimTemplates:
   - metadata: 
       name: rabbitmq
     spec:
