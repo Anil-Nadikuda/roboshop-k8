@@ -3,11 +3,16 @@ kind: Service
 metadata:
   name: mysql
   namespace: roboshop
+  labels:
+    app: mysql
+    project: roboshop
+    tier: db
 spec:
   selector:
     app: mysql
     project: roboshop
     tier: db
+  clusterIP: None
   ports:
   - protocol: TCP
     port: 3306 #service-port
