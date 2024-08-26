@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  namespace: roboshop
+  labels: # these labels are deployment labels
+    app: mysql
+    project: roboshop
+    tier: db
+spec:
+  replicas: {{ .Values.statefulset.replica }}
+  selector:
+    matchLabels: # these labels are used to find the pods
+      app: mysql
+      project: roboshop
+      tier: db
+  serviceName: "mysql"
+  template:
+    metadata:
+      labels: # these labels are pod labels
+        app: mysql
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+      - name: mysql
+        image: "anilnadikuda/mysql:{{ .Values.statefulset.imageVersion }}"
+        imagePullPolicy: Always
+        envFrom:
+        - configMapRef:
+            name: mysql
+        - secretRef:
+            name: mysql
+        volumeMounts:
+        - name: mysql
+          mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: mysql
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "ebs-sc"
+      resources:
+        requests:
+          storage: 2Gi

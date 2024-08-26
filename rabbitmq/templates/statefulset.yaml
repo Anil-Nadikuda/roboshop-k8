@@ -1,0 +1,47 @@
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rabbitmq
+  namespace: roboshop
+  labels: # these labels are deployment labels
+    app: rabbitmq
+    project: roboshop
+    tier: db
+spec:
+  replicas: {{ .Values.statefulset.replicas }}
+  selector:
+    matchLabels: # these labels are used to find the pods
+      app: rabbitmq
+      project: roboshop
+      tier: db
+  serviceName: "rabbitmq"
+  template:
+    metadata:
+      labels: # these labels are pod labels
+        app: rabbitmq
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+      - name: rabbitmq
+        image: rabbitmq
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: rabbitmq
+        volumeMount:
+        - name: rabbitmq
+          mountPath: /var/lib/rabbitmq
+  volumeClaimTemplate:
+  - metadata: 
+      name: rabbitmq
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "ebs-sc"
+      resources:
+        requests:
+          storage: 2Gi
+
+
+
