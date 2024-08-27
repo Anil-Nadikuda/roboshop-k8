@@ -1,24 +1,23 @@
-
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: redis
   namespace: roboshop
-  labels: # these labels are deployment labels
+  labels:
     app: redis
     project: roboshop
     tier: db
 spec:
-  replicas: {{ .Values.statefulset.replicas }}
   selector:
-    matchLabels: # these labels are used to find the pods
+    matchLabels:
       app: redis
       project: roboshop
       tier: db
   serviceName: "redis"
+  replicas: {{ .Values.statefulset.replicas }}
   template:
     metadata:
-      labels: # these labels are pod labels
+      labels:
         app: redis
         project: roboshop
         tier: db
@@ -26,15 +25,11 @@ spec:
       containers:
       - name: redis
         image: redis
-        imagePullPolicy: Always
-        envFrom:
-        - secretRef:
-            name: redis
-        volumeMount:
+        volumeMounts:
         - name: redis
           mountPath: /data
-  volumeClaimTemplate:
-  - metadata: 
+  volumeClaimTemplates:
+  - metadata:
       name: redis
     spec:
       accessModes: [ "ReadWriteOnce" ]
@@ -42,6 +37,3 @@ spec:
       resources:
         requests:
           storage: 1Gi
-
-
-
