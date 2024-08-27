@@ -112,12 +112,12 @@ spec:
     spec:
       containers:
       - name: web
-        image: anilnadikuda/web:v1
+        image: joindevops/web:v1
         imagePullPolicy: Always
         resources:
           requests:
             cpu: "50m"
-            memory: "64mi"
+            memory: "64Mi"
           limits:
             cpu: "100m"
             memory: "128Mi"
@@ -133,6 +133,7 @@ spec:
           items:
             - key: nginx.conf
               path: nginx.conf
+
 ---
 apiVersion: v1
 kind: Service
