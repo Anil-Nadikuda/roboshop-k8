@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: rabbitmq
   namespace: roboshop
-  label:
+  labels:
     app: rabbitmq
     project: roboshop
     tier: db
