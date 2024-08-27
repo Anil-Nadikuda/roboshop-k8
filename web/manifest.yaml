@@ -97,7 +97,7 @@ metadata:
     project: roboshop
     tier: web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels: # these labels are used to find the pods
       app: web
