@@ -112,7 +112,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: joindevops/web:v1
+        image: anilnadikuda/web:v1
         imagePullPolicy: Always
         resources:
           requests:
