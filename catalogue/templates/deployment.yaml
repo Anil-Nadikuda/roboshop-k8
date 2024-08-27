@@ -25,6 +25,14 @@ spec:
       - name: catalogue
         image: "anilnadikuda/catalogue:{{ .Values.deployment.imageVersion }}"1
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "128Mi"
+          limits:
+            cpu: "100m"
+            memory:  "256Mi"
         envFrom:
         - configMapRef:
             name: catalogue
+        
