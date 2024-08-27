@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: "anilnadikuda/web: {{ .Values.deployment.imageVersion }}"
+        image: "anilnadikuda/web:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:
