@@ -9,7 +9,7 @@ metadata:
     tier: web
 spec:
   serviceName: "web"
-  replicas: {{ .Values.deployment.replica }}
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels: # these labels are used to find the pods
       app: web
