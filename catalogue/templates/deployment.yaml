@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: "anilnadikuda/catalogue:{{ .Values.deployment.imageVersion }}"1
+        image: "anilnadikuda/catalogue:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:
