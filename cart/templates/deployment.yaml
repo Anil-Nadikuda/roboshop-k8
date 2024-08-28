@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
+  name: cart
   namespace: roboshop
   labels: # these labels are deployment labels
-    app: catalogue
+    app: cart
     project: roboshop
     tier: app
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicas }}
   selector:
     matchLabels: # these labels are used to find the pods
-      app: catalogue
+      app: cart
       project: roboshop
       tier: app
   template:
     metadata:
       labels: # these labels are pod labels
-        app: catalogue
+        app: cart
         project: roboshop
         tier: app
     spec:
       containers:
-      - name: catalogue
-        image: anilnadikuda/catalogue:v1
+      - name: cart
+        image: "anilnadikuda/cart:{{ .Values.deployment.imageVersion }}"
         imagePullPolicy: Always
         resources:
           requests:
@@ -34,4 +34,4 @@ spec:
             memory: "256Mi"
         envFrom:
         - configMapRef:
-            name: catalogue
+            name: cart
